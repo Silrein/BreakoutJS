@@ -44,6 +44,7 @@
         var brickOffsetLeft = 30;
 
         var score = 0;
+        var lives = 3;
 
         var bricks = [];
         for (var i = 0; i < brickColumnCount; i++)
@@ -120,6 +121,7 @@
             drawBricks();
 
             drawScore();
+            drawLives();
 
             x += dx;
             y += dy;
@@ -141,10 +143,23 @@
                 }
                 else
                 {
-                    alert("GAME OVER");
-                    document.location.reload();
-                    clearInterval(interval);
+                    --lives;
+                    if (!lives) {
+                        alert("GAME OVER");
+                        document.location.reload();
+                        //clearInterval(interval);
+                    }
+
+                    else
+                    {
+                        x = canvas.width / 2;
+                        y = canvas.height - 30;
+                        dx = 2;
+                        dy = -2;
+                        paddleX = (canvas.width - paddle.width) / 2;
+                    }
                 }
+                
             }
 
             if (rightPressed)
@@ -165,6 +180,7 @@
                     paddleX = 0;
                 }
             }
+            requestAnimationFrame(draw);
         }
         document.addEventListener("keydown", keyDownHandler, false);
         document.addEventListener("keyup", keyUpHandler, false);
@@ -224,7 +240,7 @@
 
                                 document.location.reload();
 
-                                clearInterval(interval);
+                                //clearInterval(interval);
                             }
                         }
                     }
@@ -240,7 +256,15 @@
             ctx.fillText("Score: " + score, 0, 20);
         }
 
-        var interval = setInterval(draw, 10);
+        function drawLives()
+        {
+            ctx.font = "16px Arial";
+            ctx.fillStyle = "#0095DD";
+            ctx.fillText("Lives: " + lives, canvas.width - 65, 20);
+        }
+
+        //var interval = setInterval(draw, 10);
+        draw();
 
     </script>
 </body>
