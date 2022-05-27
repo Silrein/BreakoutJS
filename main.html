@@ -22,7 +22,7 @@
 <body>
     <canvas id="myCanvas" width="480" height="320"></canvas>
 
-    <script>
+    <script type = "module">
         var canvas = document.getElementById("myCanvas");
         var ctx = canvas.getContext("2d");
 
@@ -265,6 +265,28 @@
 
         //var interval = setInterval(draw, 10);
         draw();
+
+        // Import the functions you need from the SDKs you need
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.8.1/firebase-app.js";
+        import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.8.1/firebase-analytics.js";
+        // TODO: Add SDKs for Firebase products that you want to use
+        // https://firebase.google.com/docs/web/setup#available-libraries
+
+        // Your web app's Firebase configuration
+        // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+        const firebaseConfig = {
+            apiKey: "AIzaSyBnxt8nh-HrnUFX-XUHNHw6kW_NDck0TA4",
+            authDomain: "breakoutjs-adc99.firebaseapp.com",
+            projectId: "breakoutjs-adc99",
+            storageBucket: "breakoutjs-adc99.appspot.com",
+            messagingSenderId: "109465117420",
+            appId: "1:109465117420:web:721047a047c34bd5b9fbc9",
+            measurementId: "G-NVJTW5PTY4"
+        };
+
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const analytics = getAnalytics(app);
 
     </script>
 </body>
